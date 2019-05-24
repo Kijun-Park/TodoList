@@ -75,10 +75,215 @@ body {
   border-top-right-radius: 25px;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.8);
 }
-.container .lists .lists__todoList .lists__todoList-title,
-.container .lists .lists__finishList .lists__finishList-title {
-  padding: 20px 0;
+
+.container .lists .lists__todoList .todoList__header,
+.container .lists .lists__finishList .finishList__header {
+  width: auto;
+  display: flex;
+  justify-content: start;
+  margin: 0 4% 0 4%;
+  padding: 3% 0;
+  border-bottom: 4px solid rgba(0, 0, 0, 0.5);
+}
+
+.container .lists .lists__todoList .todoList__header .lists__todoList-title,
+.container
+  .lists
+  .lists__finishList
+  .finishList__header
+  .lists__finishList-title {
   font-size: 30px;
   font-weight: 700;
   text-align: center;
+  margin-left: auto;
+  justify-self: center;
+  align-items: center;
+}
+
+.container .lists .lists__todoList .todoList__header .lists__todoList-addBtn,
+.container
+  .lists
+  .lists__finishList
+  .finishList__header
+  .lists__finishList-deleteBtn {
+  all: unset;
+  text-align: center;
+  margin-left: auto;
+  width: 30px;
+  justify-self: flex-end;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.container .lists .lists__todoList-lists,
+.container .lists .lists__finishList-lists {
+  height: 87%;
+  overflow-y: scroll;
+}
+
+.container .lists .lists__todoList .lists__todoList-lists .lists__todoList-list,
+.container .lists .lists__finishList-lists .lists__finishList-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25px;
+  margin: 15px 30px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .list_element,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .list_element {
+  width: 80%;
+  padding: auto;
+  overflow-wrap: break-word;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  button,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  button {
+  all: unset;
+  font-size: 20px;
+  text-align: center;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__done,
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__delete,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__restore,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__remove {
+  text-align: center;
+  width: 25px;
+  height: 25px;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__done {
+  color: #2ecc71;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__delete {
+  color: #e74c3c;
+}
+
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__restore,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__remove {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__done:hover,
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .buttons
+  .btn__delete:hover,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__restore:hover,
+.container
+  .lists
+  .lists__finishList-lists
+  .lists__finishList-list
+  .buttons
+  .btn__remove:hover,
+.container
+  .lists
+  .lists__todoList
+  .todoList__header
+  .lists__todoList-addBtn:hover,
+.container
+  .lists
+  .lists__finishList
+  .finishList__header
+  .lists__finishList-deleteBtn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 1000px) {
+  .container .lists {
+    display: block;
+    text-align: center;
+  }
+
+  .container .lists .lists__todoList,
+  .container .lists .lists__finishList {
+    display: inline-block;
+    height: 100%;
+    width: 500px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.8);
+  }
 }

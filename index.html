@@ -34,10 +34,72 @@
       <h1 class="intro">What will you do today?</h1>
       <section class="lists">
         <section class="lists__todoList">
-          <h1 class="lists__todoList-title">TodoList</h1>
+          <div class="todoList__header">
+            <h1 class="lists__todoList-title">TodoList</h1>
+            <button class="lists__todoList-addBtn">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="lists__todoList-lists">
+            <div class="lists__todoList-list">
+              <p class="list_element">
+                for test
+              </p>
+              <div class="buttons">
+                <button class="btn__done"><i class="fas fa-check"></i></button>
+                <button class="btn__delete">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="lists__todoList-list">
+              <p class="list_element">
+                looooooooooooooooooooooooooooooooooooong overflow test
+              </p>
+              <div class="buttons">
+                <button class="btn__done"><i class="fas fa-check"></i></button>
+                <button class="btn__delete">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
         <section class="lists__finishList">
-          <h1 class="lists__finishList-title">Finished</h1>
+          <div class="finishList__header">
+            <h1 class="lists__finishList-title">Finished</h1>
+            <button class="lists__finishList-deleteBtn">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          <div class="lists__finishList-lists">
+            <div class="lists__finishList-list">
+              <p class="list_element">
+                for test
+              </p>
+              <div class="buttons">
+                <button class="btn__restore">
+                  <i class="fas fa-undo-alt"></i>
+                </button>
+                <button class="btn__remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="lists__finishList-list">
+              <p class="list_element">
+                looooooooooooooooooooooooooooooooooooong overflow test
+              </p>
+              <div class="buttons">
+                <button class="btn__restore">
+                  <i class="fas fa-undo-alt"></i>
+                </button>
+                <button class="btn__remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
       </section>
     </div>
