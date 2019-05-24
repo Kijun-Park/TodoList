@@ -10,6 +10,8 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
@@ -20,16 +22,24 @@
           </div>
           <div class="header__user-name">PKJun</div>
         </div>
+        <div class="header__clock">
+          <h1>00:00</h1>
+        </div>
         <div class="header__weather">
           <div class="header__weather-icon">
             <i class="far fa-sun"></i>
           </div>
         </div>
-        <section class="main">
-          <section class="todoList"></section>
-          <section class="finishList"></section>
-        </section>
       </header>
+      <h1 class="intro">What will you do today?</h1>
+      <section class="lists">
+        <section class="lists__todoList">
+          <h1 class="lists__todoList-title">TodoList</h1>
+        </section>
+        <section class="lists__finishList">
+          <h1 class="lists__finishList-title">Finished</h1>
+        </section>
+      </section>
     </div>
   </body>
 </html>
