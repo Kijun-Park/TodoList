@@ -15,7 +15,6 @@ function loadName() {
       if (!name) {
         document.getElementById("userInput").value = null;
       } else {
-        console.log(name);
         localStorage.setItem(USER__LS, name);
         userName.innerText = name;
         document.getElementById("modal").classList.add("close");

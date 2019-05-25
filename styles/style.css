@@ -112,7 +112,18 @@ body {
 }
 
 .container header .header__weather {
+  display: flex;
   text-align: right;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.container header .header__weather .header__weather-icon {
+  padding-left: 10px;
+}
+
+.container header .header__weather .header__weather-temp {
+  font-size: 25px;
 }
 
 .container .lists {
