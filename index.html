@@ -10,17 +10,28 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
     <div class="container">
+      <div class="modal" id="modal">
+        <div class="modal__window">
+          <h1 class="modal__window-intro">What is your name?</h1>
+          <div class="modal__window-input">
+            <input type="text" placeholder="type here" />
+            <button class="input__name" id="input__name">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
       <header>
         <div class="header__user">
           <div class="header__user-picture">
             <i class="far fa-user"></i>
           </div>
-          <div class="header__user-name">PKJun</div>
+          <div class="header__user-name">What is your name?</div>
         </div>
         <div class="header__clock">
           <h1>00:00</h1>
@@ -103,5 +114,6 @@
         </section>
       </section>
     </div>
+    <script src="src/modal.js"></script>
   </body>
 </html>
