@@ -263,7 +263,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 25px;
-  margin: 15px 30px;
+  margin: 10px 30px;
   border-bottom: 3px solid rgba(0, 0, 0, 0.3);
 }
 
@@ -279,7 +279,8 @@ body {
   .lists__finishList-list
   .list_element {
   width: 80%;
-  padding: auto;
+  height: auto;
+  padding: 0 0 5px 0;
   overflow-wrap: break-word;
 }
 
@@ -330,6 +331,16 @@ body {
   text-align: center;
   width: 25px;
   height: 25px;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  .hidden,
+.container .lists .lists__finishList-lists .lists__finishList-list .hidden {
+  display: none;
 }
 
 .container

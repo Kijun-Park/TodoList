@@ -2,6 +2,7 @@ const inputBtn = document.getElementById("input__name");
 const userName = document.getElementById("userName");
 
 const USER__LS = "currentUser";
+const user__todoList = "list";
 
 function paintGreeting(text) {
   userName.innerText = text;
@@ -15,7 +16,9 @@ function loadName() {
       if (!name) {
         document.getElementById("userInput").value = null;
       } else {
+        let list = [];
         localStorage.setItem(USER__LS, name);
+        localStorage.setItem(user__todoList, JSON.stringify(list));
         userName.innerText = name;
         document.getElementById("modal").classList.add("close");
       }

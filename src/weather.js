@@ -6,12 +6,24 @@ const weatherIcon = document.getElementById("weatherIcon");
 navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
 
 function getWeatherIcon(code) {
+  console.log(code);
   let icon;
-  if (code === "01d") {
+  if (code === "01d" || code === "01n") {
     icon = `<i class="fas fa-sun"></i>`;
-  } else if (code === "02d") {
+  } else if (
+    code === "02d" ||
+    code === "02n" ||
+    code === "03d" ||
+    code === "03n"
+  ) {
     icon = `<i class="fas fa-cloud-sun"></i>`;
-  } else if (code === "03d" || code === "50d" || code === "04d") {
+  } else if (
+    code === "03d" ||
+    code === "50d" ||
+    code === "04d" ||
+    code === "04n" ||
+    code === "50n"
+  ) {
     icon = `<i class="fas fa-cloud"></i>`;
   } else if (code === "09d" || code === "10d" || code === "11d") {
     icon = `<i class="fas fa-cloud-sun-rain"></i>`;
@@ -47,5 +59,5 @@ function handleSuccess(curLocation) {
 }
 
 function handleError() {
-  weatherIcon.innerHTML(`<i class="fas fa-tint-slash"></i>`);
+  weatherIcon.innerHTML = `<i class="fas fa-tint-slash"></i>`;
 }
