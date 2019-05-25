@@ -19,7 +19,7 @@
         <div class="modal__window">
           <h1 class="modal__window-intro">What is your name?</h1>
           <div class="modal__window-input">
-            <input type="text" placeholder="type here" />
+            <input type="text" id="userInput" placeholder="type here" />
             <button class="input__name" id="input__name">
               <i class="fas fa-arrow-right"></i>
             </button>
@@ -31,9 +31,9 @@
           <div class="header__user-picture">
             <i class="far fa-user"></i>
           </div>
-          <div class="header__user-name">What is your name?</div>
+          <div class="header__user-name" id="userName">What is your name?</div>
         </div>
-        <div class="header__clock">
+        <div class="header__clock" id="clock">
           <h1>00:00</h1>
         </div>
         <div class="header__weather">
@@ -114,6 +114,7 @@
         </section>
       </section>
     </div>
-    <script src="src/modal.js"></script>
+    <script src="src/user.js"></script>
+    <script src="src/clock.js"></script>
   </body>
 </html>
