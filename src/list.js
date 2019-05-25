@@ -1,16 +1,52 @@
 const addBtn = document.getElementById("addBtn");
 const todoList = document.getElementById("todoList");
+const finishList = document.getElementById("finishList");
 const userTodoList = "list";
+const userFinishList = "finishList";
 
-function removeList() {
+function clearList() {
+  const listElement = this.parentElement.parentElement;
+  const finishList = document.getElementById("finishList");
+  const Btns = createBtns(true);
+
+  listElement.removeChild(listElement.childNodes[1]);
+
+  listElement.classList.add("lists__finishList-list");
+  listElement.classList.remove("lists__todoList-list");
+  listElement.appendChild(Btns);
+  finishList.appendChild(listElement);
+  addEvent(listElement, Btns);
+
+  console.log(listElement.childNodes[0].innerText);
+
   let list = JSON.parse(localStorage.getItem("list"));
-  list.map((value, key) => {
-    if (value == this.parentElement.parentElement.childNodes[0].innerText) {
+  list.map(function(value, key) {
+    if (value === listElement.childNodes[0].innerText) {
       list.splice(key, 1);
     }
   });
 
   localStorage.setItem(userTodoList, JSON.stringify(list));
+
+  let finList = JSON.parse(localStorage.getItem("userFinishList"));
+  if (!finList) finList = [listElement.childNodes[0].innerText];
+  else finList.push(listElement.childNodes[0].innerText);
+
+  localStorage.setItem(userFinishList, JSON.stringify(finList));
+}
+
+function removeList(isFinished) {
+  let list = JSON.parse(localStorage.getItem("list"));
+  // console.log(this.parentElement.parentElement);
+  list.map((value, key) => {
+    console.log(this.parentElement.parentElement.childNodes[0].innerText);
+    if (value === this.parentElement.parentElement.childNodes[0].innerText) {
+      list.splice(key, 1);
+    }
+  });
+
+  if (isFinished) localStorage.setItem(userFinishList, JSON.stringify(list));
+  else localStorage.setItem(userTodoList, JSON.stringify(list));
 
   this.parentElement.parentElement.parentElement.removeChild(
     this.parentElement.parentElement
@@ -27,6 +63,10 @@ function addEvent(list, btns) {
     btns.classList.add("hidden");
     btns.classList.remove("buttons");
   });
+
+  if (btns.childNodes[0].classList[0] === "btn__done") {
+    btns.childNodes[0].addEventListener("click", clearList);
+  }
 }
 
 function createBtns(isFinished) {
@@ -50,11 +90,13 @@ function createBtns(isFinished) {
     clearBtn.classList.add("btn__done");
     clearBtn.innerHTML = `<i class="fas fa-check"></i>`;
 
+    clearBtn.addEventListener("click", clearList);
+
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("btn__delete");
     deleteBtn.innerHTML = `<i class="fas fa-times"></i>`;
 
-    deleteBtn.addEventListener("click", removeList);
+    deleteBtn.addEventListener("click", removeList, null);
 
     buttons.appendChild(clearBtn);
     buttons.appendChild(deleteBtn);
@@ -65,14 +107,17 @@ function createBtns(isFinished) {
 
 function setList() {
   const listElement = document.createElement("p");
-  const userList = JSON.parse(localStorage.getItem(userTodoList));
+  let userList = JSON.parse(localStorage.getItem(userTodoList));
   const userInput = document.getElementById("user__input");
   const list = userInput.parentElement;
   const btns = createBtns(null);
 
   listElement.classList.add("list_element");
   listElement.innerText = userInput.value;
-  userList.push(userInput.value);
+
+  if (!userList) userList = [userInput.value];
+  else userList.push(userInput.value);
+
   localStorage.setItem(userTodoList, JSON.stringify(userList));
 
   while (list.firstChild) {
@@ -122,6 +167,25 @@ function init() {
       list.appendChild(listElement);
       list.appendChild(btns);
       todoList.appendChild(list);
+      addEvent(list, btns);
+    });
+  }
+
+  const finList = JSON.parse(localStorage.getItem(userFinishList));
+  if (finList) {
+    finList.map(value => {
+      const list = document.createElement("div");
+      list.classList.add("lists__finishList-list");
+
+      const listElement = document.createElement("p");
+      listElement.classList.add("list_element");
+      listElement.innerText = value;
+
+      const btns = createBtns(true);
+
+      list.appendChild(listElement);
+      list.appendChild(btns);
+      finishList.appendChild(list);
       addEvent(list, btns);
     });
   }

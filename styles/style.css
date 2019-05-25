@@ -81,12 +81,13 @@ body {
 
 .container header {
   display: flex;
-  width: 100%;
+  width: 99%;
   height: 8%;
   justify-content: space-between;
   align-items: center;
   font-size: 40px;
   background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.5%;
 }
 
 .container header .header__user,
@@ -94,6 +95,7 @@ body {
 .container header .header__weather {
   padding: 0 10px;
   width: 450px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .container header .header__user {
@@ -103,7 +105,7 @@ body {
   width: 450px;
 }
 
-.container header .header__user .header__user-picture {
+.container header .header__user .header__user-greeting {
   padding-right: 10px;
 }
 
