@@ -197,6 +197,66 @@ body {
   overflow-y: auto;
 }
 
+.container .lists .lists__todoList-lists .lists__todoList-input {
+  width: 100%;
+  margin: 0 30px 0 0;
+  font-size: 25px;
+  border: none;
+}
+
+.container
+  .lists
+  .lists__todoList-lists
+  .lists__todoList-list
+  .lists__todoList-input:focus {
+  outline: none;
+}
+
+.container .lists .lists__todoList .todoList__header .hidden {
+  display: none;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  button {
+  text-align: center;
+  font-size: 15px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  button:focus {
+  outline: none;
+}
+
+.container
+  .lists
+  .lists__todoList
+  .lists__todoList-lists
+  .lists__todoList-list
+  button:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .container .lists .lists__todoList .lists__todoList-lists .lists__todoList-list,
 .container .lists .lists__finishList-lists .lists__finishList-list {
   display: flex;
