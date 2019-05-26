@@ -5,6 +5,36 @@ const userTodoList = "list";
 const userFinishList = "finishList";
 const finishListClass = "lists__finishList-list";
 
+function restoreList() {
+  const listElement = this.parentElement.parentElement;
+  const Btns = createBtns(false);
+
+  listElement.removeChild(listElement.childNodes[1]);
+
+  listElement.classList.add("lists__todoList-list");
+  listElement.classList.remove("lists__finishList-list");
+  listElement.appendChild(Btns);
+  todoList.appendChild(listElement);
+  addEvent(listElement, Btns);
+
+  console.log(listElement.childNodes[0].innerText);
+
+  let list = JSON.parse(localStorage.getItem(userFinishList));
+  list.map(function(value, key) {
+    if (value === listElement.childNodes[0].innerText) {
+      list.splice(key, 1);
+    }
+  });
+
+  localStorage.setItem(userFinishList, JSON.stringify(list));
+
+  list = JSON.parse(localStorage.getItem(userTodoList));
+  if (!list) list = [listElement.childNodes[0].innerText];
+  else list.push(listElement.childNodes[0].innerText);
+
+  localStorage.setItem(userTodoList, JSON.stringify(list));
+}
+
 function clearList() {
   const listElement = this.parentElement.parentElement;
   const finishList = document.getElementById("finishList");
@@ -83,6 +113,7 @@ function createBtns(isFinished) {
     const restoreBtn = document.createElement("button");
     restoreBtn.classList.add("btn__restore");
     restoreBtn.innerHTML = `<i class="fas fa-undo-alt"></i>`;
+    restoreBtn.addEventListener("click", restoreList);
 
     const removeBtn = document.createElement("button");
     removeBtn.classList.add("btn__remove");
