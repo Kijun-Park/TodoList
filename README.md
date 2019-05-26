@@ -2,6 +2,8 @@
 
 TodoList를 HTML, CSS, JS로 만들었습니다.
 
+https://kijun-park.github.io/TodoList/
+
 ---
 
 - [x] TodoList에 목록 추가하기
