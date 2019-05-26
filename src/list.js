@@ -1,9 +1,43 @@
 const addBtn = document.getElementById("addBtn");
+const removeAllBtn = document.getElementById("removeAllBtn");
 const todoList = document.getElementById("todoList");
 const finishList = document.getElementById("finishList");
 const userTodoList = "list";
 const userFinishList = "finishList";
 const finishListClass = "lists__finishList-list";
+
+function printEmptylist() {
+  let emptyList = document.getElementById("todoListEmpty");
+  if (!todoList.hasChildNodes()) {
+    emptyList.classList.remove("hidden");
+    emptyList.classList.add("empty__list");
+  } else {
+    emptyList.classList.add("hidden");
+    emptyList.classList.remove("empty__list");
+  }
+
+  emptyList = document.getElementById("finishListEmpty");
+  if (!finishList.hasChildNodes()) {
+    emptyList.classList.remove("hidden");
+    emptyList.classList.add("empty__list");
+  } else {
+    emptyList.classList.add("hidden");
+    emptyList.classList.remove("empty__list");
+  }
+}
+
+function removeAll() {
+  let finList = JSON.parse(localStorage.getItem(userFinishList));
+  if (finList) {
+    finList.splice(0, finList.length);
+  }
+
+  localStorage.setItem(userFinishList, JSON.stringify(finList));
+  while (finishList.firstChild) {
+    finishList.removeChild(finishList.firstChild);
+  }
+  printEmptylist();
+}
 
 function restoreList() {
   const listElement = this.parentElement.parentElement;
@@ -16,8 +50,6 @@ function restoreList() {
   listElement.appendChild(Btns);
   todoList.appendChild(listElement);
   addEvent(listElement, Btns);
-
-  console.log(listElement.childNodes[0].innerText);
 
   let list = JSON.parse(localStorage.getItem(userFinishList));
   list.map(function(value, key) {
@@ -33,11 +65,11 @@ function restoreList() {
   else list.push(listElement.childNodes[0].innerText);
 
   localStorage.setItem(userTodoList, JSON.stringify(list));
+  printEmptylist();
 }
 
 function clearList() {
   const listElement = this.parentElement.parentElement;
-  const finishList = document.getElementById("finishList");
   const Btns = createBtns(true);
 
   listElement.removeChild(listElement.childNodes[1]);
@@ -48,9 +80,13 @@ function clearList() {
   finishList.appendChild(listElement);
   addEvent(listElement, Btns);
 
-  console.log(listElement.childNodes[0].innerText);
+  let finList = JSON.parse(localStorage.getItem(userFinishList));
+  if (!finList) finList = [listElement.childNodes[0].innerText];
+  else finList.push(listElement.childNodes[0].innerText);
 
-  let list = JSON.parse(localStorage.getItem("list"));
+  localStorage.setItem(userFinishList, JSON.stringify(finList));
+
+  let list = JSON.parse(localStorage.getItem(userTodoList));
   list.map(function(value, key) {
     if (value === listElement.childNodes[0].innerText) {
       list.splice(key, 1);
@@ -59,14 +95,10 @@ function clearList() {
 
   localStorage.setItem(userTodoList, JSON.stringify(list));
 
-  let finList = JSON.parse(localStorage.getItem("userFinishList"));
-  if (!finList) finList = [listElement.childNodes[0].innerText];
-  else finList.push(listElement.childNodes[0].innerText);
-
-  localStorage.setItem(userFinishList, JSON.stringify(finList));
+  printEmptylist();
 }
 
-function removeList(_, isFinished) {
+function removeList() {
   let list;
   if (finishListClass === this.parentElement.parentElement.classList[0]) {
     list = JSON.parse(localStorage.getItem(userFinishList));
@@ -87,6 +119,8 @@ function removeList(_, isFinished) {
   this.parentElement.parentElement.parentElement.removeChild(
     this.parentElement.parentElement
   );
+
+  printEmptylist();
 }
 
 function addEvent(list, btns) {
@@ -184,6 +218,8 @@ function addList() {
   todoList.appendChild(list);
   setListBtn.addEventListener("click", setList);
   addBtn.removeEventListener("click", addList);
+
+  printEmptylist();
 }
 
 function init() {
@@ -224,8 +260,10 @@ function init() {
       addEvent(list, btns);
     });
   }
+  printEmptylist();
 }
 
 init();
 
 addBtn.addEventListener("click", addList);
+removeAllBtn.addEventListener("click", removeAll);

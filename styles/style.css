@@ -199,6 +199,19 @@ body {
   overflow-y: auto;
 }
 
+.container .lists .lists__todoList .empty__list,
+.container .lists .lists__finishList .empty__list {
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding-top: 20%;
+}
+
+.container .lists .lists__todoList .hidden,
+.container .lists .lists__finishList .hidden {
+  display: none;
+}
+
 .container .lists .lists__todoList-lists .lists__todoList-input {
   width: 100%;
   margin: 0 30px 0 0;
