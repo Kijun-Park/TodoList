@@ -3,6 +3,7 @@ const todoList = document.getElementById("todoList");
 const finishList = document.getElementById("finishList");
 const userTodoList = "list";
 const userFinishList = "finishList";
+const finishListClass = "lists__finishList-list";
 
 function clearList() {
   const listElement = this.parentElement.parentElement;
@@ -35,17 +36,22 @@ function clearList() {
   localStorage.setItem(userFinishList, JSON.stringify(finList));
 }
 
-function removeList(isFinished) {
-  let list = JSON.parse(localStorage.getItem("list"));
-  // console.log(this.parentElement.parentElement);
+function removeList(_, isFinished) {
+  let list;
+  if (finishListClass === this.parentElement.parentElement.classList[0]) {
+    list = JSON.parse(localStorage.getItem(userFinishList));
+  } else {
+    list = JSON.parse(localStorage.getItem(userTodoList));
+  }
+
   list.map((value, key) => {
-    console.log(this.parentElement.parentElement.childNodes[0].innerText);
     if (value === this.parentElement.parentElement.childNodes[0].innerText) {
       list.splice(key, 1);
     }
   });
 
-  if (isFinished) localStorage.setItem(userFinishList, JSON.stringify(list));
+  if (finishListClass === this.parentElement.parentElement.classList[0])
+    localStorage.setItem(userFinishList, JSON.stringify(list));
   else localStorage.setItem(userTodoList, JSON.stringify(list));
 
   this.parentElement.parentElement.parentElement.removeChild(
@@ -74,7 +80,6 @@ function createBtns(isFinished) {
   buttons.classList.add("hidden");
 
   if (isFinished) {
-    console.log("f");
     const restoreBtn = document.createElement("button");
     restoreBtn.classList.add("btn__restore");
     restoreBtn.innerHTML = `<i class="fas fa-undo-alt"></i>`;
@@ -82,6 +87,7 @@ function createBtns(isFinished) {
     const removeBtn = document.createElement("button");
     removeBtn.classList.add("btn__remove");
     removeBtn.innerHTML = `<i class="fas fa-times"></i>`;
+    removeBtn.addEventListener("click", removeList, true);
 
     buttons.appendChild(restoreBtn);
     buttons.appendChild(removeBtn);
@@ -89,14 +95,12 @@ function createBtns(isFinished) {
     const clearBtn = document.createElement("button");
     clearBtn.classList.add("btn__done");
     clearBtn.innerHTML = `<i class="fas fa-check"></i>`;
-
     clearBtn.addEventListener("click", clearList);
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("btn__delete");
     deleteBtn.innerHTML = `<i class="fas fa-times"></i>`;
-
-    deleteBtn.addEventListener("click", removeList, null);
+    deleteBtn.addEventListener("click", removeList, false);
 
     buttons.appendChild(clearBtn);
     buttons.appendChild(deleteBtn);
