@@ -18,14 +18,20 @@ function getWeatherIcon(code) {
   ) {
     icon = `<i class="fas fa-cloud-sun"></i>`;
   } else if (
-    code === "03d" ||
     code === "50d" ||
+    code === "50n" ||
     code === "04d" ||
-    code === "04n" ||
-    code === "50n"
+    code === "04n"
   ) {
     icon = `<i class="fas fa-cloud"></i>`;
-  } else if (code === "09d" || code === "10d" || code === "11d") {
+  } else if (
+    code === "09d" ||
+    code === "09n" ||
+    code === "10d" ||
+    code === "10n" ||
+    code === "11d" ||
+    code === "11n"
+  ) {
     icon = `<i class="fas fa-cloud-sun-rain"></i>`;
   } else {
     icon = `<i class="fas fa-snowflake"></i>`;
@@ -42,7 +48,10 @@ function getWeather(lat, lon) {
     })
     .then(json => {
       const temperature = json.main.temp;
-      const icon = json.weather[0].icon;
+      const icon = json.weather[1].icon
+        ? json.weather[1].icon
+        : json.weather[0].icon;
+      console.log(icon);
       weather.innerText = `${temperature}℃`;
       getWeatherIcon(icon);
     });
